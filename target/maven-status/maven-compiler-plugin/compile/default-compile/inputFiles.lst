@@ -1,0 +1,8 @@
+/home/marcelo/dev/workspace/projetoEE/relatorioVendas/src/main/java/br/com/apijavaee/relatorioVendas/service/MemberRegistration.java
+/home/marcelo/dev/workspace/projetoEE/relatorioVendas/src/main/java/br/com/apijavaee/relatorioVendas/rest/JaxRsActivator.java
+/home/marcelo/dev/workspace/projetoEE/relatorioVendas/src/main/java/br/com/apijavaee/relatorioVendas/data/MemberRepository.java
+/home/marcelo/dev/workspace/projetoEE/relatorioVendas/src/main/java/br/com/apijavaee/relatorioVendas/data/MemberListProducer.java
+/home/marcelo/dev/workspace/projetoEE/relatorioVendas/src/main/java/br/com/apijavaee/relatorioVendas/util/Resources.java
+/home/marcelo/dev/workspace/projetoEE/relatorioVendas/src/main/java/br/com/apijavaee/relatorioVendas/controller/MemberController.java
+/home/marcelo/dev/workspace/projetoEE/relatorioVendas/src/main/java/br/com/apijavaee/relatorioVendas/rest/MemberResourceRESTService.java
+/home/marcelo/dev/workspace/projetoEE/relatorioVendas/src/main/java/br/com/apijavaee/relatorioVendas/model/Member.java
