@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.modelmapper.ModelMapper;
 
 import br.com.apijavaee.relatorioVendas.dao.JogosDAO;
+import br.com.apijavaee.relatorioVendas.dto.AtualizarJogoDTO;
 import br.com.apijavaee.relatorioVendas.dto.DetalhesJogoDTO;
 import br.com.apijavaee.relatorioVendas.dto.JogoDTO;
 import br.com.apijavaee.relatorioVendas.model.JogoEntity;
@@ -22,8 +23,7 @@ public class JogoService {
 	public List<JogoDTO> getAll() {
 		List<JogoDTO> jogoDTOs = new ArrayList<>();
 		List<JogoEntity> jogoEntities = jogoDAO.findByAll();
-		jogoEntities.stream()
-				.forEach(jogo -> jogoDTOs.add(modelMapper.map(jogo, JogoDTO.class)));
+		jogoEntities.stream().forEach(jogo -> jogoDTOs.add(modelMapper.map(jogo, JogoDTO.class)));
 
 		return jogoDTOs;
 	}
@@ -35,6 +35,14 @@ public class JogoService {
 	public void salvar(DetalhesJogoDTO detalhesJogoDTO) {
 		JogoEntity entity = modelMapper.map(detalhesJogoDTO, JogoEntity.class);
 		jogoDAO.salvarJogo(entity);
+	}
+
+	public void alterarJogo(String lote, AtualizarJogoDTO atualizarJogo) {
+		JogoEntity jogoEntity = jogoDAO.findByLote(lote);
+		jogoEntity.setModalidade(atualizarJogo.getModalidade());
+		jogoEntity.setDescricao(atualizarJogo.getDescricao());
+		jogoDAO.alterar(jogoEntity);
+
 	}
 
 }

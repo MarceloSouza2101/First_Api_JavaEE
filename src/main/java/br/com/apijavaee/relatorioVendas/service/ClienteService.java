@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 
 import br.com.apijavaee.relatorioVendas.dao.ClienteDAO;
 import br.com.apijavaee.relatorioVendas.dao.JogosDAO;
+import br.com.apijavaee.relatorioVendas.dto.AtualizarClienteDTO;
 import br.com.apijavaee.relatorioVendas.dto.ClienteDTO;
 import br.com.apijavaee.relatorioVendas.dto.DetalhesClienteDTO;
 import br.com.apijavaee.relatorioVendas.model.ClienteEntity;
@@ -43,6 +44,12 @@ public class ClienteService {
 		ClienteEntity clienteEntity = modelMapper.map(detalhesClienteDTO, ClienteEntity.class);
 		clienteEntity.setJogos(jogos);
 		clienteDAO.salvarCliente(clienteEntity);
+	}
+
+	public void alterarCliente(String cpf, AtualizarClienteDTO atualizarCLienteDTO) {
+		ClienteEntity clienteEntity = clienteDAO.findByCpf(cpf);
+		clienteEntity.setTelefone(atualizarCLienteDTO.getTelefone());
+		clienteDAO.alterar(clienteEntity);
 	}
 	
 }

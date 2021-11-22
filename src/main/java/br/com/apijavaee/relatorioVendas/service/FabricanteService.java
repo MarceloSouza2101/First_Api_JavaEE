@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 
 import br.com.apijavaee.relatorioVendas.dao.FabricanteDAO;
 import br.com.apijavaee.relatorioVendas.dao.JogosDAO;
+import br.com.apijavaee.relatorioVendas.dto.AtualizarFabricanteDTO;
 import br.com.apijavaee.relatorioVendas.dto.DetalhesFabricanteDTO;
 import br.com.apijavaee.relatorioVendas.dto.FabricanteDTO;
 import br.com.apijavaee.relatorioVendas.model.FabricanteEntity;
@@ -43,6 +44,12 @@ public class FabricanteService {
 		FabricanteEntity fabricanteEntity = modelMapper.map(detalhesFabricanteDTO, FabricanteEntity.class);
 		fabricanteEntity.setJogos(jogos);
 		fabricanteDAO.salvarFabricante(fabricanteEntity);
+	}
+
+	public void alterarFabricante(String cnpj, AtualizarFabricanteDTO atualizarFabricanteDTO) {
+		FabricanteEntity fabricanteEntity = fabricanteDAO.findByCnpj(cnpj);
+		fabricanteEntity.setNome(atualizarFabricanteDTO.getNome());
+		fabricanteDAO.alterar(fabricanteEntity);
 	}
 
 }

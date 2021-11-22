@@ -46,5 +46,9 @@ public class ClienteDAO {
 	public void salvarCliente(ClienteEntity clienteEntity) {
 		em.persist(clienteEntity);
 	}
+
+	public void alterar(ClienteEntity clienteEntity) {
+		em.merge(clienteEntity);
+	}
 	
 }

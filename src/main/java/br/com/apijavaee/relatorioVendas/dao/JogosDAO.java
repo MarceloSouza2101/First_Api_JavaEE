@@ -26,7 +26,7 @@ public class JogosDAO {
 		CriteriaQuery<JogoEntity> query = criteriaBuilder.createQuery(JogoEntity.class);
 		query.from(JogoEntity.class);
 		TypedQuery<JogoEntity> typequery = em.createQuery(query);
-		
+
 		return typequery.getResultList();
 	}
 
@@ -43,9 +43,12 @@ public class JogosDAO {
 		return typedQuery.getSingleResult();
 	}
 
-	
 	public void salvarJogo(JogoEntity detalhesJogoDTO) {
 		em.persist(detalhesJogoDTO);
+	}
+
+	public void alterar(JogoEntity entity) {
+		em.merge(entity);
 	}
 
 }

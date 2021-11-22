@@ -26,7 +26,7 @@ public class FabricanteDAO {
 		CriteriaQuery<FabricanteEntity> query = criteriaBuilder.createQuery(FabricanteEntity.class);
 		query.from(FabricanteEntity.class);
 		TypedQuery<FabricanteEntity> typedQuery = em.createQuery(query);
-		
+
 		return typedQuery.getResultList();
 	}
 
@@ -46,6 +46,10 @@ public class FabricanteDAO {
 
 	public void salvarFabricante(FabricanteEntity fabricanteEntity) {
 		em.persist(fabricanteEntity);
+	}
+
+	public void alterar(FabricanteEntity fabricanteEntity) {
+		em.merge(fabricanteEntity);
 	}
 
 }

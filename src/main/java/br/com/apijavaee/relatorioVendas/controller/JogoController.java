@@ -6,12 +6,14 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import br.com.apijavaee.relatorioVendas.dto.AtualizarJogoDTO;
 import br.com.apijavaee.relatorioVendas.dto.DetalhesJogoDTO;
 import br.com.apijavaee.relatorioVendas.dto.JogoDTO;
 import br.com.apijavaee.relatorioVendas.service.JogoService;
@@ -42,4 +44,11 @@ public class JogoController {
 		jogoService.salvar(detalhesJogoDTO);
 		return Response.status(201).entity("created").build();
 	}
+	
+	@PUT
+	@Path("/{lote}")
+    @Consumes("application/json")
+    public void updateJogo(@PathParam("lote") String lote, AtualizarJogoDTO atualizarJogo) {
+        jogoService.alterarJogo(lote, atualizarJogo);
+    }
 }
