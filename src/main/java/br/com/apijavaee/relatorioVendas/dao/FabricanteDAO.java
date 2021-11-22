@@ -2,6 +2,7 @@ package br.com.apijavaee.relatorioVendas.dao;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -13,6 +14,8 @@ import javax.persistence.criteria.Root;
 
 import br.com.apijavaee.relatorioVendas.model.FabricanteEntity;
 
+//A @Stateless elimina a necessidade de fazer a transacao manual
+@Stateless
 public class FabricanteDAO {
 
 	@PersistenceContext
@@ -37,7 +40,12 @@ public class FabricanteDAO {
 		query.where(predicate);
 
 		TypedQuery<FabricanteEntity> typedQuery = em.createQuery(query);
-		return typedQuery.getSingleResult();
+		FabricanteEntity entity = typedQuery.getSingleResult();
+		return entity;
+	}
+
+	public void salvarFabricante(FabricanteEntity fabricanteEntity) {
+		em.persist(fabricanteEntity);
 	}
 
 }

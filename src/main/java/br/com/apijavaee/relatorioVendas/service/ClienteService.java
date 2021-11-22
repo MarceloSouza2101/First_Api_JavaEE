@@ -8,13 +8,19 @@ import javax.inject.Inject;
 import org.modelmapper.ModelMapper;
 
 import br.com.apijavaee.relatorioVendas.dao.ClienteDAO;
+import br.com.apijavaee.relatorioVendas.dao.JogosDAO;
 import br.com.apijavaee.relatorioVendas.dto.ClienteDTO;
+import br.com.apijavaee.relatorioVendas.dto.DetalhesClienteDTO;
 import br.com.apijavaee.relatorioVendas.model.ClienteEntity;
+import br.com.apijavaee.relatorioVendas.model.JogoEntity;
 
 public class ClienteService {
 
 	@Inject
 	ClienteDAO clienteDAO;
+	
+	@Inject
+	JogosDAO jogosDAO;
 
 	private ModelMapper modelMapper = new ModelMapper();
 
@@ -27,8 +33,16 @@ public class ClienteService {
 		return clientesDTO;
 	}
 
-	public ClienteDTO getByCpf(String cpf) {
-		return modelMapper.map(clienteDAO.findByCpf(cpf), ClienteDTO.class);
+	public DetalhesClienteDTO getByCpf(String cpf) {
+		return modelMapper.map(clienteDAO.findByCpf(cpf), DetalhesClienteDTO.class);
 	}
 
+	public void salvar(DetalhesClienteDTO detalhesClienteDTO) {
+		List<JogoEntity> jogos = new ArrayList<>();
+		detalhesClienteDTO.getJogos().stream().forEach(jogo -> jogos.add(jogosDAO.findByLote(jogo.getLote())));
+		ClienteEntity clienteEntity = modelMapper.map(detalhesClienteDTO, ClienteEntity.class);
+		clienteEntity.setJogos(jogos);
+		clienteDAO.salvarCliente(clienteEntity);
+	}
+	
 }

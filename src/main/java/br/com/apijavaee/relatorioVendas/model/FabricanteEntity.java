@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class FabricanteEntity implements Serializable {
 	@NotEmpty
 	private String cnpj;
 	private String nome;
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	@NotNull
 	private List<JogoEntity> jogos;
 

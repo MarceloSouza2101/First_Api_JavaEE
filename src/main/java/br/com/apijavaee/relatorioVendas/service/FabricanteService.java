@@ -7,14 +7,20 @@ import javax.inject.Inject;
 import org.modelmapper.ModelMapper;
 
 import br.com.apijavaee.relatorioVendas.dao.FabricanteDAO;
+import br.com.apijavaee.relatorioVendas.dao.JogosDAO;
+import br.com.apijavaee.relatorioVendas.dto.DetalhesFabricanteDTO;
 import br.com.apijavaee.relatorioVendas.dto.FabricanteDTO;
 import br.com.apijavaee.relatorioVendas.model.FabricanteEntity;
+import br.com.apijavaee.relatorioVendas.model.JogoEntity;
 
 public class FabricanteService {
 
 	@Inject
 	FabricanteDAO fabricanteDAO;
 
+	@Inject
+	JogosDAO jogosDAO;
+	
 	ModelMapper modelMapper = new ModelMapper();
 
 	public List<FabricanteDTO> getAll() {
@@ -26,8 +32,17 @@ public class FabricanteService {
 		return fabricantesDTO;
 	}
 
-	public FabricanteDTO getByCpnj(String cnpj) {
-		return modelMapper.map(fabricanteDAO.findByCnpj(cnpj), FabricanteDTO.class);
+	public DetalhesFabricanteDTO getByCnpj(String cnpj) {
+		FabricanteEntity clienteEntity = fabricanteDAO.findByCnpj(cnpj);
+		return modelMapper.map(clienteEntity, DetalhesFabricanteDTO.class);
+	}
+
+	public void salvar(DetalhesFabricanteDTO detalhesFabricanteDTO) {
+		List<JogoEntity> jogos = new ArrayList<>();
+		detalhesFabricanteDTO.getJogos().stream().forEach(jogo -> jogos.add(jogosDAO.findByLote(jogo.getLote())));
+		FabricanteEntity fabricanteEntity = modelMapper.map(detalhesFabricanteDTO, FabricanteEntity.class);
+		fabricanteEntity.setJogos(jogos);
+		fabricanteDAO.salvarFabricante(fabricanteEntity);
 	}
 
 }

@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.modelmapper.ModelMapper;
 
 import br.com.apijavaee.relatorioVendas.dao.JogosDAO;
+import br.com.apijavaee.relatorioVendas.dto.DetalhesJogoDTO;
 import br.com.apijavaee.relatorioVendas.dto.JogoDTO;
 import br.com.apijavaee.relatorioVendas.model.JogoEntity;
 
@@ -27,8 +28,13 @@ public class JogoService {
 		return jogoDTOs;
 	}
 
-	public JogoDTO getByLote(String lote) {
-		return modelMapper.map(jogoDAO.findByLote(lote), JogoDTO.class);
+	public DetalhesJogoDTO getByLote(String lote) {
+		return modelMapper.map(jogoDAO.findByLote(lote), DetalhesJogoDTO.class);
+	}
+
+	public void salvar(DetalhesJogoDTO detalhesJogoDTO) {
+		JogoEntity entity = modelMapper.map(detalhesJogoDTO, JogoEntity.class);
+		jogoDAO.salvarJogo(entity);
 	}
 
 }
