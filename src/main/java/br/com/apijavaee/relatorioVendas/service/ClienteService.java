@@ -51,5 +51,9 @@ public class ClienteService {
 		clienteEntity.setTelefone(atualizarCLienteDTO.getTelefone());
 		clienteDAO.alterar(clienteEntity);
 	}
+
+	public void deleteByCpf(String cpf) {
+	clienteDAO.deletar(clienteDAO.findByCpf(cpf));
+	}
 	
 }

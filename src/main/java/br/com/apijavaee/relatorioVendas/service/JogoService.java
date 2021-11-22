@@ -45,4 +45,8 @@ public class JogoService {
 
 	}
 
+	public void deletar(String lote) {
+		jogoDAO.deleteByCpf(jogoDAO.findByLote(lote));
+	}
+
 }

@@ -52,4 +52,8 @@ public class FabricanteService {
 		fabricanteDAO.alterar(fabricanteEntity);
 	}
 
+	public void deleteByCnpj(String cnpj) {
+		fabricanteDAO.delete(fabricanteDAO.findByCnpj(cnpj));
+	}
+
 }

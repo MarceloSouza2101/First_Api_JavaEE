@@ -50,5 +50,10 @@ public class ClienteDAO {
 	public void alterar(ClienteEntity clienteEntity) {
 		em.merge(clienteEntity);
 	}
+
+	public void deletar(ClienteEntity entity) {
+		ClienteEntity clienteEntity = em.merge(entity);
+		em.remove(clienteEntity);
+	}
 	
 }

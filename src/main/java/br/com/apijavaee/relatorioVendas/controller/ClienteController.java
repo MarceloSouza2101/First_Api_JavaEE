@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -50,5 +51,11 @@ public class ClienteController {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void updateCliente(@PathParam("cpf") String cpf, AtualizarClienteDTO atualizarCLienteDTO) {
 		clienteService.alterarCliente(cpf, atualizarCLienteDTO);
+	}
+	
+	@DELETE
+	@Path("/{cpf}")
+	public void deleteCliente(@PathParam("cpf") String cpf) {
+		clienteService.deleteByCpf(cpf);
 	}
 }

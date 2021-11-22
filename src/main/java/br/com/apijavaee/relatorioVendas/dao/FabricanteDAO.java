@@ -52,4 +52,9 @@ public class FabricanteDAO {
 		em.merge(fabricanteEntity);
 	}
 
+	public void delete(FabricanteEntity entity) {
+		FabricanteEntity fabricanteEntity = em.merge(entity);
+		em.remove(fabricanteEntity);
+	}
+
 }

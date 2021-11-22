@@ -51,4 +51,9 @@ public class JogosDAO {
 		em.merge(entity);
 	}
 
+	public void deleteByCpf(JogoEntity entity) {
+		JogoEntity jogoEntity = em.merge(entity);
+		em.remove(jogoEntity);
+	}
+
 }

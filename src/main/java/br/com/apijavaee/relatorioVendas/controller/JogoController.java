@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -51,4 +52,10 @@ public class JogoController {
     public void updateJogo(@PathParam("lote") String lote, AtualizarJogoDTO atualizarJogo) {
         jogoService.alterarJogo(lote, atualizarJogo);
     }
+	
+	@DELETE
+	@Path("/{lote}")
+	public void deleteJogo(@PathParam("lote") String lote) {
+		jogoService.deletar(lote);
+	}
 }
