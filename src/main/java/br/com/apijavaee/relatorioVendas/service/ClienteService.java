@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-
 import org.modelmapper.ModelMapper;
 
 import br.com.apijavaee.relatorioVendas.dao.ClienteDAO;
@@ -17,19 +16,22 @@ import br.com.apijavaee.relatorioVendas.model.JogoEntity;
 
 public class ClienteService {
 
+	private ClienteDAO clienteDAO;
+
+	private JogosDAO jogosDAO;
+
 	@Inject
-	ClienteDAO clienteDAO;
-	
-	@Inject
-	JogosDAO jogosDAO;
+	public ClienteService(ClienteDAO clienteDAO, JogosDAO jogosDAO) {
+		this.clienteDAO = clienteDAO;
+		this.jogosDAO = jogosDAO;
+	}
 
 	private ModelMapper modelMapper = new ModelMapper();
 
 	public List<ClienteDTO> getAll() {
 		List<ClienteDTO> clientesDTO = new ArrayList<>();
 		List<ClienteEntity> clienteEntities = clienteDAO.findByAll();
-		clienteEntities.stream()
-				.forEach(cliente -> clientesDTO.add(modelMapper.map(cliente, ClienteDTO.class)));
+		clienteEntities.stream().forEach(cliente -> clientesDTO.add(modelMapper.map(cliente, ClienteDTO.class)));
 
 		return clientesDTO;
 	}
@@ -53,7 +55,7 @@ public class ClienteService {
 	}
 
 	public void deleteByCpf(String cpf) {
-	clienteDAO.deletar(clienteDAO.findByCpf(cpf));
+		clienteDAO.deletar(clienteDAO.findByCpf(cpf));
 	}
-	
+
 }

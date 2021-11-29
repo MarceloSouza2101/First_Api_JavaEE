@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -27,8 +28,9 @@ public class ClienteEntity implements Serializable {
 	@NotEmpty
 	@Column(unique = true)
 	private String cpf;
+	@NotBlank
 	private String nome;
-
+	@NotNull
 	private int telefone;
 	@ManyToMany(fetch = FetchType.EAGER)
 	@NotNull

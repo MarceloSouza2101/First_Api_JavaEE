@@ -21,7 +21,7 @@ public class FabricanteService {
 
 	@Inject
 	JogosDAO jogosDAO;
-	
+
 	ModelMapper modelMapper = new ModelMapper();
 
 	public List<FabricanteDTO> getAll() {
@@ -29,7 +29,7 @@ public class FabricanteService {
 		List<FabricanteEntity> fabricanteEntities = fabricanteDAO.findAll();
 		fabricanteEntities.stream()
 				.forEach(fabricante -> fabricantesDTO.add(modelMapper.map(fabricante, FabricanteDTO.class)));
-		
+
 		return fabricantesDTO;
 	}
 

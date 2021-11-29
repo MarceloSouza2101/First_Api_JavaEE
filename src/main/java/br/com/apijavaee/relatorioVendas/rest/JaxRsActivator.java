@@ -19,6 +19,6 @@ package br.com.apijavaee.relatorioVendas.rest;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-@ApplicationPath("/rest")
+@ApplicationPath("/v1")
 public class JaxRsActivator extends Application {
 }

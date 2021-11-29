@@ -2,20 +2,11 @@ package br.com.apijavaee.relatorioVendas.dto;
 
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
-
 public class DetalhesClienteDTO {
 
-	@NotBlank
 	private String cpf;
-	@NotBlank
 	private String nome;
-	@NotNull
 	private int telefone;
-	@NotEmpty
 	private List<JogoDTO> jogos;
 
 	public List<JogoDTO> getJogos() {

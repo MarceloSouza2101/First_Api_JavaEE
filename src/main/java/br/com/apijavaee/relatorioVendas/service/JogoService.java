@@ -15,38 +15,41 @@ import br.com.apijavaee.relatorioVendas.model.JogoEntity;
 
 public class JogoService {
 
+	private JogosDAO jogoDAO;
+
 	@Inject
-	JogosDAO jogoDAO;
+	public JogoService(JogosDAO jogosDAO) {
+		this.jogoDAO = jogosDAO;
+	}
 
 	private ModelMapper modelMapper = new ModelMapper();
 
 	public List<JogoDTO> getAll() {
 		List<JogoDTO> jogoDTOs = new ArrayList<>();
-		List<JogoEntity> jogoEntities = jogoDAO.findByAll();
-		jogoEntities.stream().forEach(jogo -> jogoDTOs.add(modelMapper.map(jogo, JogoDTO.class)));
+		List<JogoEntity> jogoEntities = this.jogoDAO.findByAll();
+		jogoEntities.stream().forEach(jogo -> jogoDTOs.add(this.modelMapper.map(jogo, JogoDTO.class)));
 
 		return jogoDTOs;
 	}
 
 	public DetalhesJogoDTO getByLote(String lote) {
-		return modelMapper.map(jogoDAO.findByLote(lote), DetalhesJogoDTO.class);
+		return this.modelMapper.map(this.jogoDAO.findByLote(lote), DetalhesJogoDTO.class);
 	}
 
 	public void salvar(DetalhesJogoDTO detalhesJogoDTO) {
-		JogoEntity entity = modelMapper.map(detalhesJogoDTO, JogoEntity.class);
-		jogoDAO.salvarJogo(entity);
+		JogoEntity entity = this.modelMapper.map(detalhesJogoDTO, JogoEntity.class);
+		this.jogoDAO.salvarJogo(entity);
 	}
 
 	public void alterarJogo(String lote, AtualizarJogoDTO atualizarJogo) {
-		JogoEntity jogoEntity = jogoDAO.findByLote(lote);
+		JogoEntity jogoEntity = this.jogoDAO.findByLote(lote);
 		jogoEntity.setModalidade(atualizarJogo.getModalidade());
 		jogoEntity.setDescricao(atualizarJogo.getDescricao());
-		jogoDAO.alterar(jogoEntity);
-
+		this.jogoDAO.alterar(jogoEntity);
 	}
 
 	public void deletar(String lote) {
-		jogoDAO.deleteByCpf(jogoDAO.findByLote(lote));
+		this.jogoDAO.deleteByCpf(this.jogoDAO.findByLote(lote));
 	}
 
 }

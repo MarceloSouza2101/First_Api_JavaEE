@@ -2,17 +2,10 @@ package br.com.apijavaee.relatorioVendas.dto;
 
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotBlank;
-
 public class DetalhesFabricanteDTO {
 
-	@NotBlank
 	private String nome;
-	@NotBlank
 	private String cnpj;
-	@NotNull
 	private List<JogoDTO> jogos;
 
 	public String getNome() {

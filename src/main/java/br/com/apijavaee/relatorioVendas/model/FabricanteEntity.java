@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -27,6 +28,7 @@ public class FabricanteEntity implements Serializable {
 	@NotNull
 	@NotEmpty
 	private String cnpj;
+	@NotBlank
 	private String nome;
 	@OneToMany(fetch = FetchType.EAGER)
 	@NotNull

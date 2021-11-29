@@ -2,23 +2,11 @@ package br.com.apijavaee.relatorioVendas.dto;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
-
 public class DetalhesJogoDTO {
 
-	@Column(unique = true)
-	@NotNull
-	@NotEmpty
 	private String lote;
-	@NotBlank
 	private String nome;
-	@NotBlank
 	private String modalidade;
-	@NotNull
 	private LocalDate lancamento;
 	private String descricao;
 
@@ -62,4 +50,3 @@ public class DetalhesJogoDTO {
 		this.descricao = descricao;
 	}
 }
-

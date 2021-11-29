@@ -5,8 +5,7 @@ public class ClienteDTO {
 	private String cpf;
 	private String nome;
 	private int telefone;
-	
-	
+
 	public String getCpf() {
 		return cpf;
 	}
@@ -30,6 +29,5 @@ public class ClienteDTO {
 	public void setTelefone(int telefone) {
 		this.telefone = telefone;
 	}
-	
-	
+
 }

@@ -1,7 +1,7 @@
 package br.com.apijavaee.relatorioVendas.dto;
 
 public class FabricanteDTO {
-	
+
 	private String nome;
 	private String cnpj;
 
@@ -21,5 +21,3 @@ public class FabricanteDTO {
 		this.nome = nome;
 	}
 }
-
-

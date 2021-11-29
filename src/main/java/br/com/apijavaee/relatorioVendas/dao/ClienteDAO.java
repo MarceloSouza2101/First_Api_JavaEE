@@ -26,19 +26,19 @@ public class ClienteDAO {
 		CriteriaQuery<ClienteEntity> query = criteriaBuilder.createQuery(ClienteEntity.class);
 		query.from(ClienteEntity.class);
 		TypedQuery<ClienteEntity> typequery = em.createQuery(query);
-		
+
 		return typequery.getResultList();
 	}
 
-	public ClienteEntity findByCpf(String cpf){
+	public ClienteEntity findByCpf(String cpf) {
 		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
 		CriteriaQuery<ClienteEntity> query = criteriaBuilder.createQuery(ClienteEntity.class);
 		Root<ClienteEntity> root = query.from(ClienteEntity.class);
 		Path<String> path = root.<String>get("cpf");
-		
+
 		Predicate predicate = criteriaBuilder.like(path, cpf);
 		query.where(predicate);
-		
+
 		TypedQuery<ClienteEntity> typedQuery = em.createQuery(query);
 		return typedQuery.getSingleResult();
 	}
@@ -55,5 +55,5 @@ public class ClienteDAO {
 		ClienteEntity clienteEntity = em.merge(entity);
 		em.remove(clienteEntity);
 	}
-	
+
 }

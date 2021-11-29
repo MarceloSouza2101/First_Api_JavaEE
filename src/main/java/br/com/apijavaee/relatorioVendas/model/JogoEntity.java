@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class JogoEntity implements Serializable {
@@ -22,11 +22,13 @@ public class JogoEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column(unique = true)
-	@NotNull
-	@NotEmpty
+	@NotBlank
 	private String lote;
+	@NotBlank
 	private String nome;
+	@NotBlank
 	private String modalidade;
+	@NotNull
 	private LocalDate lancamento;
 	private String descricao;
 
